@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+        }
+
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                const [key, value] = cookie.split('=');
+                if (key === name) {
+                    return value;
+                }
+            }
+            return null;
+        }
+
+        function deleteCookie(name) {
+            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+        }
+
+        function displayAllCookies() {
+            alert(document.cookie || 'No cookies found');
+        }
+
+        function handleSetCookie1() {
+            setCookie('cookie1', 'value1', 7);
+            alert('Cookie1 set');
+        }
+
+        function handleSetCookie2() {
+            setCookie('cookie2', 'value2', 7);
+            alert('Cookie2 set');
+        }
+
+        function handleGetCookie1() {
+            const value = getCookie('cookie1');
+            alert(value ? `Cookie1: ${value}` : 'Cookie1 not found');
+        }
+
+        function handleGetCookie2() {
+            const value = getCookie('cookie2');
+            alert(value ? `Cookie2: ${value}` : 'Cookie2 not found');
+        }
+
+        function handleDeleteCookie1() {
+            deleteCookie('cookie1');
+            alert('Cookie1 deleted');
+        }
+
+        function handleDeleteCookie2() {
+            deleteCookie('cookie2');
+            alert('Cookie2 deleted');
+        }
+    </script>
+</head>
+<body>
+    <h1>Cookie Management</h1>
+    <button onclick="handleSetCookie1()">Set Cookie1</button>    
+    <button onclick="handleGetCookie1()">Get Cookie1</button>
+    <button onclick="handleDeleteCookie1()">Delete Cookie1</button>
+    <br>
+    <button onclick="handleSetCookie2()">Set Cookie2</button>
+    <button onclick="handleGetCookie2()">Get Cookie2</button>
+    <button onclick="handleDeleteCookie2()">Delete Cookie2</button><br>
+    <button onclick="displayAllCookies()">Display All Cookies</button>
+</body>
+</html>
